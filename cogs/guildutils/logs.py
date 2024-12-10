@@ -3,7 +3,6 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from cogs import beta
 
 
 class Database(asyncpg.Pool):
@@ -66,7 +65,7 @@ class Logs(commands.Cog):
     )
     @app_commands.checks.cooldown(1, 5, key=lambda i: i.guild.id)
     async def configure_message_log(self, interaction: discord.Interaction, type: str, target_channel: discord.TextChannel):
-        if target_channel.permissions_for(interaction.guild.me).manage_webhooks == False:
+        if not target_channel.permissions_for(interaction.guild.me).manage_webhooks:
             return await interaction.response.send_message(
                 "I am missing `manage_webhooks` in the target channel.", ephemeral=True
             )

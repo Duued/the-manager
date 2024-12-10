@@ -3,7 +3,6 @@ import datetime
 import discord
 from discord import app_commands, ui
 from discord.ext import commands
-from discord.ui import view
 
 import github
 
