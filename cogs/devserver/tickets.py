@@ -2,7 +2,7 @@ import datetime
 
 import asyncpg
 import discord
-from discord import app_commands, ui
+from discord import app_commands
 from discord.ext import commands
 
 
@@ -108,7 +108,7 @@ class Tickets(commands.GroupCog, name="tickets"):
     async def join_user_ticket(self, ctx: commands.Context, thread_number: int):
         await ctx.typing()
         data = await self.db.fetchrow("SELECT * FROM tickets WHERE ticketno=$1", thread_number)
-        if data and data["open"] == True:
+        if data and data["open"]:
             channel: discord.Thread | None = self.ticketchannel.get_thread(data["threadid"])
             await channel.add_user(ctx.author)
             await ctx.send(content=f"Joined. You may access it here: {channel.mention}", ephemeral=True)

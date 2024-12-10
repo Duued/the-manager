@@ -1,5 +1,4 @@
 import discord
-from discord import app_commands
 from discord.ext import commands
 
 
@@ -32,7 +31,7 @@ class DevelopmentServer(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         if message.channel.id == 1129521321089449985:
-            if not message.guild.get_role(1131414043568115793) in message.author.roles:
+            if message.guild.get_role(1131414043568115793) not in message.author.roles:
                 await message.author.add_roles(
                     discord.Object(id=1131414043568115793), reason="Member sent their first introduction."
                 )

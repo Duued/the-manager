@@ -1,19 +1,14 @@
-import datetime
-import logging
-import os
 import traceback
 
 import discord
-import dotenv
 from discord import app_commands, ui
 from discord.ext import commands
-from discord.ui import view
 
 
 class Tree(app_commands.CommandTree):
     async def on_error(self, interaction: discord.Interaction, exception: app_commands.AppCommandError):
         _view = GetTraceback(exception)
-        tb = traceback.format_exception(type(exception), exception, exception.__traceback__)
+        #tb = traceback.format_exception(type(exception), exception, exception.__traceback__)
         if interaction.command:
             print(f"Error running command {interaction.command.name} by user {interaction.user}")
         print(exception)

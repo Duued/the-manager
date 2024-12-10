@@ -8,7 +8,7 @@ from cogs import beta
 
 
 def bool_to_str(input: bool) -> str:
-    if input == True:
+    if input:
         return "Yes"
     else:
         return "No"

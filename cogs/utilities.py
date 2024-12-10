@@ -106,11 +106,11 @@ class ViewAvatar(ui.Select):
             discord.SelectOption(
                 label="Close Menu",
                 value="close",
-                description=f"Close this menu while keeping the message.",
+                description="Close this menu while keeping the message.",
                 emoji="\U0000274c",
             ),
             discord.SelectOption(
-                label="Delete Message", value="delete", description=f"Delete this message.", emoji="\U0001f5d1"
+                label="Delete Message", value="delete", description="Delete this message.", emoji="\U0001f5d1"
             ),
         ]
         super().__init__(min_values=1, max_values=1, options=options)
@@ -185,7 +185,7 @@ class Utilities(commands.Cog, name="utilities"):
     async def delete_webhook(self, interaction: discord.Interaction, url: str):
         await interaction.response.defer(thinking=True, ephemeral=True)
         async with aiohttp.ClientSession() as session:
-            async with session.delete(url) as response:
+            async with session.delete(url):
                 await interaction.edit_original_response(content="The webhook was deleted.")
 
     @app_commands.command(name="invite", description="Invite a bot")

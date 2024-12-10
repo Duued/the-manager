@@ -1,19 +1,17 @@
-import asyncio
+
 import base64
 import hashlib
 import json
 import os
-from typing import Any, Union
+from typing import Any
 
 import aiohttp
-import discord
-import dotenv
 from discord.ext import commands
 
 
 universeId = 4398944483
 startUrl = f"https://apis.roblox.com/datastores/v1/universes/{universeId}/standard-datastores/"
-headers = {f"x-api-key": f"{os.getenv('ROBLOX_API_KEY')}"}
+headers = {"x-api-key": os.getenv('ROBLOX_API_KEY')}
 
 
 def converttoMd5(data):
