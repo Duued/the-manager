@@ -1,2 +1,4 @@
 .env
 hooks.py
+pyproject.toml
+schema.sql
