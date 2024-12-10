@@ -12,7 +12,7 @@ from discord.ui import view
 
 class Tree(app_commands.CommandTree):
     async def on_error(self, interaction: discord.Interaction, exception: app_commands.AppCommandError):
-        view = GetTraceback(exception)
+        _view = GetTraceback(exception)
         tb = traceback.format_exception(type(exception), exception, exception.__traceback__)
         if interaction.command:
             print(f"Error running command {interaction.command.name} by user {interaction.user}")
@@ -25,7 +25,7 @@ class Tree(app_commands.CommandTree):
             elif isinstance(exception, app_commands.CheckFailure):
                 await interaction.channel.send(exception)
             else:
-                view.message = await interaction.response.send_message(exception, view=view)
+                _view.message = await interaction.response.send_message(exception, view=_view)
         except discord.HTTPException:
             if isinstance(exception, app_commands.MissingPermissions):
                 await interaction.channel.send(f"{deny} exception")
@@ -33,9 +33,9 @@ class Tree(app_commands.CommandTree):
                 await interaction.channel.send(f"{deny} exception")
             else:
                 if await interaction.original_response():
-                    await interaction.edit_original_response(content=exception, view=view)
+                    await interaction.edit_original_response(content=exception, view=_view)
                 else:
-                    await interaction.response.send_message(content=exception, view=view)
+                    await interaction.response.send_message(content=exception, view=_view)
                 # try:
                 #    view.message = await interaction.followup.send(exception, view=view)
                 # except:

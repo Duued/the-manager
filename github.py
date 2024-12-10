@@ -1,10 +1,7 @@
 import os
 
 import aiohttp
-import discord
 import dotenv
-from discord import app_commands
-from discord.ext import commands
 
 
 dotenv.load_dotenv(verbose=True)
