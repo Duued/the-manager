@@ -29,8 +29,10 @@ class SmartThings(commands.Cog):
                 if response.status == 200:
                     status = await response.json()
                     current_status = status['components']['main']['switch']['switch']['value']
-                if current_status == 'on':
-                    return True
+                    if current_status == 'on':
+                        return True
+                    else: 
+                        return False
                 else:
                     return False
             return f"An error has occured while getting the status of {device_id}."
