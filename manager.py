@@ -19,6 +19,7 @@ extensions = [
     "cogs.logging",
     "cogs.guildmanager",
     "jishaku",
+    "cogs.smartthings",
     "cogs.utilities",
     "cogs.guild.channels",
     "cogs.dev",
