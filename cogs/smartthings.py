@@ -29,6 +29,8 @@ class SmartThings(commands.Cog):
                 if response.status == 200:
                     status = await response.json()
                     current_status = status['components']['main']['switch']['switch']['value']
+                    if current_status is None:
+                        return f"An error has occured while getting the status of {device_id}."
                     if current_status == 'on':
                         return True
                     else: 
@@ -68,7 +70,7 @@ class SmartThings(commands.Cog):
                     else:
                         await ctx.send(f"An error has occured while getting the status of RaspberryPi.\n{response}")
 
-    @commands.group(name="strips")
+    @commands.group(name="strips", invoke_without_command=True)
     async def strips_group(self, ctx: commands.Context):
         """Toggle the power status of the light strips."""
         response_text = ""
