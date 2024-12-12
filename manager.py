@@ -18,8 +18,8 @@ LOGGER = logging.getLogger(__name__)
 extensions = [
     "cogs.logging",
     "cogs.guildmanager",
-    "jishaku",
     "cogs.smartthings",
+    "jishaku",
     "cogs.utilities",
     "cogs.guild.channels",
     "cogs.dev",

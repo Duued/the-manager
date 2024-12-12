@@ -19,6 +19,7 @@ class SmartThings(commands.Cog):
             return True
         raise commands.CheckFailure(f"You must own this bot to use {ctx.command.qualified_name}")
 
+
     async def check_device_status(self, device_id: str):
         headers = {
             "Authorization": f"Bearer {self.token}"
